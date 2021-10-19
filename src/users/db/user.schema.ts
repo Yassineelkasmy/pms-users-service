@@ -15,10 +15,16 @@ export class UserSchema extends IdentifiableEntitySchema {
   readonly phone:string;
 
   @Prop()
+  readonly password: string;
+
+  @Prop()
   readonly company: string;
 
   @Prop()
-  readonly password: string;
+  readonly verified: boolean;
+
+  @Prop()
+  readonly active: boolean;
 
   
 

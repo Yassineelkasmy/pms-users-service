@@ -1,6 +1,5 @@
-import { ConflictException } from "@nestjs/common";
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
-import { UserFactory } from "../user.factory";
+import { UserFactory } from "../../user.factory";
 import { CreateUserCommand } from "./create_user.command";
 
 @CommandHandler(CreateUserCommand)

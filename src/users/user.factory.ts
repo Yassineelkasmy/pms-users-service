@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import { UserCreatedEvent } from "./events/user_created.event";
 import { UserEntityRepository } from "./db/user_entity.repository";
 import { ConflictException, Injectable } from "@nestjs/common";
+import { hashPassword } from "src/auth/hash";
 
 @Injectable()
 export class UserFactory implements EntityFactory<User> {
@@ -17,8 +18,10 @@ export class UserFactory implements EntityFactory<User> {
             username,
             email,
             phone,
-            password,
+            await hashPassword(password),
             company,
+            false,
+            true,
         );
         if(!(await this.userEntityRepository.findOneByEmail(email)).length){
             this.userEntityRepository.create(user);
@@ -29,9 +32,6 @@ export class UserFactory implements EntityFactory<User> {
         }else{
             throw new ConflictException("email already used");
         }
-        
-
-        
 
 
     }

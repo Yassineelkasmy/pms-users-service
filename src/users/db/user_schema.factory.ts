@@ -1,4 +1,4 @@
-import { Injectable, UseFilters } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 
 import { EntitySchemaFactory } from '../../database/entity-schema.factory';
@@ -16,6 +16,8 @@ export class UserSchemaFactory
       phone: user.getPhone(),
       company: user.getCompany(),
       password : user.getPassword(),
+      verified: user.isVerified(),
+      active: user.isActive(),
     };
   }
 
@@ -27,6 +29,8 @@ export class UserSchemaFactory
       userSchema.phone,
       userSchema.password,
       userSchema.company,
+      userSchema.verified,
+      userSchema.active
     );
   }
 }

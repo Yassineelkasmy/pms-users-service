@@ -8,6 +8,8 @@ export class User extends AggregateRoot{
         private readonly phone: string,
         private readonly password: string,
         private readonly company: string,
+        private readonly verified: boolean,
+        private readonly active: boolean,
     ){
         super();
     }
@@ -43,5 +45,13 @@ export class User extends AggregateRoot{
 
     getPassword() :string {
         return this.password;
+    }
+
+    isVerified() :boolean {
+        return this.verified;
+    }
+
+    isActive() :boolean{
+        return this.active;
     }
 }
