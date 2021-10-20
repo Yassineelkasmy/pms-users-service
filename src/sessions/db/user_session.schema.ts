@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from '../../database/identifiable-entity.schema';
 
-@Schema({ versionKey: false, collection: 'users' , timestamps: true})
+@Schema({ versionKey: false, collection: 'user_sessions' , timestamps: true})
 export class UserSessionSchema extends IdentifiableEntitySchema {
   @Prop()
   readonly userId: string;

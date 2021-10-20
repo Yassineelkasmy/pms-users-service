@@ -4,8 +4,9 @@ import { ObjectId } from 'mongodb';
 import { UserSessionEntityRepository } from "./db/user_session_entity.repository";
 import { UserEntityRepository } from "src/users/db/user_entity.repository";
 import { verifyPassword } from "src/utils/hash";
-import { UnauthorizedException } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 
+@Injectable()
 export class UserSessionFactory implements EntityFactory<UserSession> {
 
     constructor(private readonly userSessionEntityRepository: UserSessionEntityRepository,
@@ -16,7 +17,8 @@ export class UserSessionFactory implements EntityFactory<UserSession> {
         const [user] = await this.userEntityRepository.findOneByEmail(email);
 
         if(user) {
-            if(verifyPassword(user.getPassword(), password)) {
+            const isPasswordValid :boolean = await verifyPassword(user.getPassword(), password);
+            if(isPasswordValid) {
 
                 const userSession = new UserSession(
                     new ObjectId().toHexString(),
@@ -33,10 +35,10 @@ export class UserSessionFactory implements EntityFactory<UserSession> {
                 
 
             }else{
-                throw new UnauthorizedException();
+                throw new UnauthorizedException("invalid_user_credentials");
             }
         }else{
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("invalid_user_credentials");
         }
         
         

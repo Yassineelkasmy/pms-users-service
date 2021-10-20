@@ -30,6 +30,12 @@ import { UsersController } from './users.controller';
     ],
     controllers:[
         UsersController,
+        
     ],
+    exports: [
+        UserEntityRepository,
+        UserSchemaFactory,
+        UserFactory,
+    ]
 })
 export class UsersModule {}
