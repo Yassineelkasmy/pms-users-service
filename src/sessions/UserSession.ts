@@ -6,8 +6,8 @@ export class UserSession extends AggregateRoot{
         private readonly userId: string,
         private readonly valid: boolean,
         private readonly userAgent: string,
-        private readonly createdAt: Date,
-        private readonly updatedAt: Date,
+        private readonly createdAt?: Date,
+        private readonly updatedAt?: Date,
 
     ){
         super();
