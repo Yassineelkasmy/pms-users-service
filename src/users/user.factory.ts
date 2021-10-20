@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 import { UserCreatedEvent } from "./events/user_created.event";
 import { UserEntityRepository } from "./db/user_entity.repository";
 import { ConflictException, Injectable } from "@nestjs/common";
-import { hashPassword } from "src/auth/hash";
+import { hashPassword } from "src/utils/hash";
 
 @Injectable()
 export class UserFactory implements EntityFactory<User> {

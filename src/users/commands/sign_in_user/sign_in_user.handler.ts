@@ -4,6 +4,7 @@ import { verifyPassword } from "src/utils/hash";
 import { UserEntityRepository } from "src/users/db/user_entity.repository";
 import { SignInResponseTokens } from "src/users/dto/sign_in_tokens.response";
 import { SignInUserCommand } from "./sign_in_user.command";
+import { signJwt } from "src/utils/jwt.utils";
 
 @CommandHandler(SignInUserCommand)
 export class SignInUserHandler implements ICommandHandler<SignInUserCommand , SignInResponseTokens>{
@@ -18,9 +19,12 @@ export class SignInUserHandler implements ICommandHandler<SignInUserCommand , Si
                 const isPasswordValid = await verifyPassword(user.getPassword(), password);
                 if(isPasswordValid){
 
-                    //Generate 
+                    const access_token = signJwt({
+                        
+                    });
                     
-                    return { token:";ssss", refresh_token:"sdsdsd" };
+                    
+                    return { access_token:";ssss", refresh_token:"sdsdsd" };
                 }
 
                 else{
