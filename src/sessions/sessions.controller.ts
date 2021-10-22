@@ -13,16 +13,16 @@ export class SessionsController {
         @Body() createSessionRequest:CreateSessionRequest,
         @Res({ passthrough: true }) res: Response ,
         @Req() req: Request,
-    ) : Promise<CreateSessionResponse> {
+    ) : Promise<any> {
         const tokensResponse = await this.commandBus.execute<CreateSessionCommand , CreateSessionResponse>(
             
             new CreateSessionCommand(createSessionRequest , "none"),
         );
         
-        console.log(req.signedCookies);
+        console.log(req.signedCookies['auth-cookie']);
         res.cookie("auth-cookie", tokensResponse, {httpOnly:true ,signed:true})
 
-        return tokensResponse;
+        
 
     }
 }

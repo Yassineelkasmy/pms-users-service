@@ -1,4 +1,4 @@
-const jwt  = require('jsonwebtoken'); // We must import it this way cuz nestjs has custom TS Settings
+import * as jwt from 'jsonwebtoken'; // We must import it this way cuz nestjs has custom TS Settings
 import config from 'config/default';
 
 const privateKey = config.privateKey;
