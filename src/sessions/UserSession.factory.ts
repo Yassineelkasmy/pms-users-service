@@ -19,17 +19,23 @@ export class UserSessionFactory implements EntityFactory<UserSession> {
         if(user) {
             const isPasswordValid :boolean = await verifyPassword(user.getPassword(), password);
             if(isPasswordValid) {
+                if(user.isVerified()){
+                    const userSession = new UserSession(
+                        new ObjectId().toHexString(),
+                        user.getId(),
+                        true,
+                        userAgent,
+                    );
+            
+                    await this.userSessionEntityRepository.create(userSession);
+            
+                    return userSession;
+                }
+            else {
+                throw new UnauthorizedException("unverified_user");
 
-                const userSession = new UserSession(
-                    new ObjectId().toHexString(),
-                    user.getId(),
-                    true,
-                    userAgent,
-                );
-        
-                await this.userSessionEntityRepository.create(userSession);
-        
-                return userSession;
+            }
+               
 
                 
                 

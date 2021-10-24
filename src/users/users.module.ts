@@ -30,7 +30,6 @@ import { UsersController } from './users.controller';
     ],
     controllers:[
         UsersController,
-        
     ],
     exports: [
         UserEntityRepository,

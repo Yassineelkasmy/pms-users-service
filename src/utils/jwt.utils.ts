@@ -3,6 +3,8 @@ import config from 'config/default';
 
 const privateKey = config.privateKey;
 const publicKey = config.publicKey;
+const verificationPrivateKey = config.verificationPrivateKey;
+const verificationPublicKey = config.verificationPublicKey;
 
 export function signJwt(object: Object, options) : string {
   
