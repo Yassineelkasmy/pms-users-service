@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
+import { AuthGuard } from 'src/middlewares/auth.guard';
 import { UsersModule } from 'src/users/users.module';
 import { UserSessionCommandHandlers } from './commands';
 import { UserSessionSchema } from './db/user_session.schema';
@@ -24,6 +25,8 @@ import { UserSessionFactory } from './UserSession.factory';
     UsersModule,
   ],
   providers: [
+    AuthGuard,
+
     UserSessionFactory,
     UserSessionEntityRepository,
     UserSessionSchemaFactory,

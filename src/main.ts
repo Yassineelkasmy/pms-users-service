@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
+import { authMiddleware } from './middlewares/auth.middleware';
 const cookieSession = require('cookie-session');  
 
 
@@ -10,8 +11,9 @@ async function bootstrap() {
   app.use(cookieSession({
     keys: ['ASDAS']
   }))
-  app.use(cookieParser("secretkey"));
   app.useGlobalPipes(new ValidationPipe());
+  app.use(cookieParser("secretkey"));
+  app.use(authMiddleware);
   await app.listen(3000);
 }
 bootstrap();
