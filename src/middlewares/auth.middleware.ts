@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyJwt } from 'src/utils/jwt.utils';
-import { get } from 'lodash';
 
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -16,8 +15,9 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         if (decoded) {
           // @ts-ignore
           req.user = decoded;
-          next();
+          
         }
+        next();
        }
       }
       

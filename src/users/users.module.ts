@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
+import { EmailModule } from 'src/email/email.module';
+import { EmailService } from 'src/email/email.service';
 import { UserCommandHandlers } from './commands';
 import { UserSchema } from './db/user.schema';
 import { UserEntityRepository } from './db/user_entity.repository';
@@ -12,6 +14,7 @@ import { UsersController } from './users.controller';
 @Module({
     imports:[
         CqrsModule,
+        EmailModule,
         MongooseModule.forFeature(
             [
                 {
@@ -27,6 +30,7 @@ import { UsersController } from './users.controller';
         UserFactory,
         ...UserCommandHandlers,
         ...UserEventHandlers,
+        EmailService,
     ],
     controllers:[
         UsersController,

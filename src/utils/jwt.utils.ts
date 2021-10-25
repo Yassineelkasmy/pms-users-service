@@ -24,7 +24,35 @@ export function verifyJwt(token: string) {
       decoded,
     };
   } catch (e: any) {
-    console.error(e);
+    // console.error(e);
+    return {
+      valid: false,
+      expired: e.message === "jwt expired",
+      decoded: null,
+    };
+  }
+}
+
+export function signEmailVerificationJwt(object: Object, options) : string {
+  
+
+  return jwt.sign(object, verificationPrivateKey, {
+    ...options,
+    algorithm: "RS256",
+  });
+}
+
+
+export function verifyEmailVerificationJwt(token: string) {
+  try {
+    const decoded = jwt.verify(token, verificationPublicKey);
+    return {
+      valid: true,
+      expired: false,
+      decoded,
+    };
+  } catch (e: any) {
+    // console.error(e);
     return {
       valid: false,
       expired: e.message === "jwt expired",

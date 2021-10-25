@@ -26,7 +26,7 @@ export class UserFactory implements EntityFactory<User> {
         if(!(await this.userEntityRepository.findOneByEmail(email)).length){
             this.userEntityRepository.create(user);
             user.apply(
-            new UserCreatedEvent(user.getId())
+            new UserCreatedEvent(user.getId(), user.getEmail())
             );
             return user;
         }else{
