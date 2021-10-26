@@ -18,8 +18,9 @@ export class UserSchemaFactory
       password : user.getPassword(),
       verified: user.isVerified(),
       active: user.isActive(),
-    };
-  }
+      createdAt: user.getCreateDate(),
+      updatedAt: user.getUpdateDate(),
+  }}
 
   createFromSchema(userSchema: UserSchema): User {
     return new User(
@@ -30,7 +31,10 @@ export class UserSchemaFactory
       userSchema.password,
       userSchema.company,
       userSchema.verified,
-      userSchema.active
+      userSchema.active,
+      userSchema.createdAt,
+      userSchema.updatedAt,
+
     );
   }
 }

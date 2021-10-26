@@ -13,9 +13,9 @@ export class UserSessionSchema extends IdentifiableEntitySchema {
   readonly valid: boolean;
 
   @Prop()
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @Prop()
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
 }

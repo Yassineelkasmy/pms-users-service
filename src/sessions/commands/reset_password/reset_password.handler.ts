@@ -23,6 +23,7 @@ export class ResetPasswordHandler implements ICommandHandler<ResetPasswordComman
         const [user] = await this.userEntityRepository.findOneByEmail(userEmail);
 
         if(!user) throw new NotFoundException("user_not_found");
+        if(!user.isVerified()) throw new UnauthorizedException("user_not_verified");
 
         const newPassword = await hashPassword(password);
         user.resetPassword(newPassword);

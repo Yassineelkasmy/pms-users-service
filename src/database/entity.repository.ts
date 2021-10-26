@@ -68,6 +68,8 @@ export abstract class EntityRepository<
         new: true,
         useFindAndModify: false,
         lean: true,
+        timestamps:true,
+      
       },
     );
 

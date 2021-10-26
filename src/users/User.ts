@@ -10,6 +10,8 @@ export class User extends AggregateRoot{
         private readonly company: string,
         private verified: boolean,
         private readonly active: boolean,
+        private readonly createdAt?: Date,
+        private readonly updatedAt?: Date,
     ){
         super();
     }
@@ -62,4 +64,13 @@ export class User extends AggregateRoot{
     resetPassword(password:string) {
         this.password = password;
     }
+
+    getCreateDate() : Date {
+        return this.createdAt;
+    }
+
+    getUpdateDate() : Date {
+        return this.updatedAt;
+    }
+
 }

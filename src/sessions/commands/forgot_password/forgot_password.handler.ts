@@ -1,4 +1,4 @@
-import { NotFoundException } from "@nestjs/common";
+import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { EmailService } from "src/email/email.service";
 import { UserEntityRepository } from "src/users/db/user_entity.repository";
@@ -19,6 +19,7 @@ export class ForgotPasswordHandler implements ICommandHandler<ForgotPasswordComm
 
     if(!user) throw new NotFoundException("user_not_found");
 
+    if(!user.isVerified()) throw new UnauthorizedException("user_not_verified");
 
     const token =  signRecoverPasswordVerificationJwt(
         { email: email },
