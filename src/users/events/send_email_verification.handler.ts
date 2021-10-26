@@ -14,7 +14,7 @@ export class SendEmailVerficationHandler implements IEventHandler{
             { expiresIn:"15m" } // 15 minutes
         );
 
-        const url = `$localhost:3000/users/verify?token=${token}`;
+        const url = `http://www.localhost:3000/sessions/verify?token=${token}`;
 
         const text = `Welcome to the application. To confirm the email address, click here: ${url}`;
  

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateSessionCommand } from './commands/create_session/create_session.command';
 import { CreateSessionRequest } from './dto/create_session.request.dto';
@@ -6,6 +6,11 @@ import { CreateSessionResponse } from './dto/create_session.response.dto';
 import { Request, Response } from 'express';
 import { ReIssueAccessTokenCommand } from './commands/reissue_access_token/reissue_access_token.command';
 import { AuthGuard } from 'src/middlewares/auth.guard';
+import { VerifyUserCommand } from './commands/verify_user/verify_user.command';
+import { ForgotPasswordRequest } from './dto/forgot_password_request.dto';
+import { ForgotPasswordCommand } from './commands/forgot_password/forgot_password.command';
+import { ResetPasswordRequest } from './dto/reset_password_reqeuest.dto';
+import { ResetPasswordCommand } from './commands/reset_password/reset_password.command';
 @Controller('sessions')
 export class SessionsController {
     constructor(private readonly commandBus: CommandBus) {}
@@ -43,11 +48,34 @@ export class SessionsController {
         else {
             throw new UnauthorizedException();
         }
-         
+    }
 
-        
+    @Get("/verify")
+    async verify(@Query("token") token:string) {
+       return await this.commandBus.execute<VerifyUserCommand>(
+           new VerifyUserCommand(token),
+       );
+    }
 
+    @Post("forgot-password")
+    async forgotPassword(@Body() forgotPasswordRequest: ForgotPasswordRequest) {
+        await this.commandBus.execute<ForgotPasswordCommand>(
+            new ForgotPasswordCommand(forgotPasswordRequest)
+        );
+    }
+
+    @Post("reset-passwrod")
+    async resetPassword(@Body() resetPasswordRequest: ResetPasswordRequest) {
+        return await this.commandBus.execute<ResetPasswordCommand>(
+            new ResetPasswordCommand(resetPasswordRequest)
+        );
     }
 
     
+
+
+
+
+
+
 }
