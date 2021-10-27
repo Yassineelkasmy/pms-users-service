@@ -14,6 +14,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser("secretkey"));
   app.use(authMiddleware);
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
