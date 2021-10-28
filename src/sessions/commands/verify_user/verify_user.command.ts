@@ -1,3 +1,5 @@
+import { VerifyUserRequest } from "src/sessions/dto/verify_user.request";
+
 export class VerifyUserCommand{
-    constructor(public readonly token:string) {}
+    constructor(public readonly verifyUserReqeuest:VerifyUserRequest) {}
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateSessionCommand } from './commands/create_session/create_session.command';
 import { CreateSessionRequest } from './dto/create_session.request.dto';
@@ -11,6 +11,7 @@ import { ForgotPasswordRequest } from './dto/forgot_password_request.dto';
 import { ForgotPasswordCommand } from './commands/forgot_password/forgot_password.command';
 import { ResetPasswordRequest } from './dto/reset_password_reqeuest.dto';
 import { ResetPasswordCommand } from './commands/reset_password/reset_password.command';
+import { VerifyUserRequest } from './dto/verify_user.request';
 @Controller('sessions')
 export class SessionsController {
     constructor(private readonly commandBus: CommandBus) {}
@@ -50,10 +51,10 @@ export class SessionsController {
         }
     }
 
-    @Get("/verify")
-    async verify(@Query("token") token:string) {
+    @Post("/verify")
+    async verify(@Body() verifyUserRequest:VerifyUserRequest) {
        return await this.commandBus.execute<VerifyUserCommand>(
-           new VerifyUserCommand(token),
+           new VerifyUserCommand(verifyUserRequest),
        );
     }
 

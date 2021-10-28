@@ -8,7 +8,8 @@ import { VerifyUserCommand } from "./verify_user.command";
 @CommandHandler(VerifyUserCommand)
 export class VerifyUserHandler implements ICommandHandler<VerifyUserCommand> {
     constructor(public readonly userEntityRepository: UserEntityRepository) {}
-    async execute({token}:VerifyUserCommand) {
+    async execute({verifyUserReqeuest}:VerifyUserCommand) {
+        const { token } = verifyUserReqeuest;
         const {decoded} = verifyEmailVerificationJwt(token);
         const email = get(decoded, "email") as string;
         if (!decoded || !email) throw new UnauthorizedException("Email verification link expired");
