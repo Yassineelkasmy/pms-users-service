@@ -1,7 +1,7 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { get } from "lodash";
-import { UserSessionEntityRepository } from "src/sessions/db/user_session_entity.repository";
+import { UserSessionEntityRepository } from "src/sessions/db/user_session/user_session_entity.repository";
 import { UserEntityRepository } from "src/users/db/user_entity.repository";
 import { signJwt, verifyJwt } from "src/utils/jwt.utils";
 import { ReIssueAccessTokenCommand } from "./reissue_access_token.command";

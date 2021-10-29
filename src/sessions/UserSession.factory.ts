@@ -1,7 +1,7 @@
 import { EntityFactory } from "src/database/entity.factory";
 import { UserSession } from "./UserSession";
 import { ObjectId } from 'mongodb';
-import { UserSessionEntityRepository } from "./db/user_session_entity.repository";
+import { UserSessionEntityRepository } from "./db/user_session/user_session_entity.repository";
 import { UserEntityRepository } from "src/users/db/user_entity.repository";
 import { verifyPassword } from "src/utils/hash";
 import { Injectable, UnauthorizedException } from "@nestjs/common";

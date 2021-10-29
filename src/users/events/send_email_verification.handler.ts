@@ -13,6 +13,7 @@ export class SendEmailVerficationHandler implements IEventHandler{
             { email: userEmail },
             { expiresIn:"15m" } // 15 minutes
         );
+        
 
         const url = `http://www.localhost:8081/auth/verify/${token}`;
 

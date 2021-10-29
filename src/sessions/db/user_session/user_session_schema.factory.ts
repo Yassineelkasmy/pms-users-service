@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 
-import { EntitySchemaFactory } from '../../database/entity-schema.factory';
-import { UserSession } from '../UserSession';
+import { EntitySchemaFactory } from '../../../database/entity-schema.factory';
+import { UserSession } from '../../UserSession';
 import { UserSessionSchema } from './user_session.schema';
 
 @Injectable()

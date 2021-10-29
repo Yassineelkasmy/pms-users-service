@@ -24,7 +24,11 @@ export class VerificationToken extends AggregateRoot{
 
     getUserEmail() : string {
         return this.userEmail;
-    }    
+    }
+    
+    getType() : string {
+        return this.type;
+    }
 
     getCreateDate() : Date {
         return this.createdAt;
