@@ -4,9 +4,6 @@ import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import { EmailModule } from 'src/email/email.module';
 import { EmailService } from 'src/email/email.service';
 import { AuthGuard } from 'src/middlewares/auth.guard';
-import { TokenEntityRepository } from 'src/tokens/db/token_entity.repository';
-import { TokenSchemaFactory } from 'src/tokens/db/token_schema.factory';
-import { TokenFactory } from 'src/tokens/token.factory';
 import { TokensModule } from 'src/tokens/tokens.module';
 import { UserCommandHandlers } from './commands';
 import { UserSchema } from './db/user.schema';
@@ -44,9 +41,7 @@ import { UsersController } from './users.controller';
         ...UserEventHandlers,
         EmailService,
         AuthGuard,
-        TokenFactory,
-        TokenSchemaFactory,
-        //TokenEntityRepository,
+        
     ],
     controllers:[
         UsersController,
