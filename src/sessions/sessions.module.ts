@@ -28,8 +28,8 @@ import { UserSessionFactory } from './UserSession.factory';
         }
       ]
     ),
-    UsersModule,
     TokensModule,
+    UsersModule,
     EmailModule
   ],
   providers: [

@@ -9,7 +9,7 @@ export class TokenFactory {
     constructor(private readonly tokenEntityRepository: TokenEntityRepository){}
 
     async create(email:string, type:TokenType): Promise<Token> {
-        const token = new Token(new ObjectId().toHexString(),email,type);
+        const token = new Token(new ObjectId().toHexString(),email,type)
         await this.tokenEntityRepository.create(token);
 
         return token;

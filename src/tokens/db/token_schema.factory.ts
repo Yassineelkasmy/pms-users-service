@@ -12,7 +12,7 @@ export class TokenSchemaFactory
     return {
       _id: new ObjectId(token.getId()),
       email: token.getEmail(),
-      type: token.getType(),
+      type: token.getType().valueOf(),
   }}
 
   createFromSchema(tokenSchema: TokenSchema): Token {

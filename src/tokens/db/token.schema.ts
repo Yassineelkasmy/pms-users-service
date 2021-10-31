@@ -8,7 +8,7 @@ export class TokenSchema extends IdentifiableEntitySchema {
   readonly email: string;
 
   @Prop()
-  readonly type:TokenType;
+  readonly type:number;
 
 
 }

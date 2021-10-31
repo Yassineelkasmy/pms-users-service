@@ -9,7 +9,6 @@ import { TokenSchemaFactory } from "./token_schema.factory";
 @Injectable()
 export class TokenEntityRepository extends BaseEntityRepository<TokenSchema, Token> {
 
-
     constructor(
         @InjectModel(TokenSchema.name)
         tokenModel: Model<TokenSchema>,

@@ -1,9 +1,10 @@
 import {AggregateRoot} from "@nestjs/cqrs";
 
 export class Token extends AggregateRoot {
-    constructor(private readonly _id,
-            private email:string,
-            private type: TokenType,
+    constructor(
+        private readonly _id,
+        private email:string,
+        private type: TokenType,
         ){
             super();
         }

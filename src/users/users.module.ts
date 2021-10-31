@@ -44,6 +44,9 @@ import { UsersController } from './users.controller';
         ...UserEventHandlers,
         EmailService,
         AuthGuard,
+        TokenFactory,
+        TokenSchemaFactory,
+        //TokenEntityRepository,
     ],
     controllers:[
         UsersController,
