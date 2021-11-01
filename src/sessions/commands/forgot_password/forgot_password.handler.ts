@@ -26,6 +26,8 @@ export class ForgotPasswordHandler implements ICommandHandler<ForgotPasswordComm
         { expiresIn:"5m" } 
     );
 
+    
+
     const url = `http://www.localhost:3000/sessions/reset-password?token=${token}`;
 
     const text = `Reset your password here: ${url}`;
