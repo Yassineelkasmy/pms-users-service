@@ -14,7 +14,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser("secretkey"));
   app.use(authMiddleware);
-  app.enableCors();
+  app.enableCors({credentials:true , origin:"http://localhost:8081"});
   await app.listen(3000);
 }
 bootstrap();
+
