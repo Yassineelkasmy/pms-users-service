@@ -11,14 +11,14 @@ export class UserFactory implements EntityFactory<User> {
     constructor(private readonly userEntityRepository: UserEntityRepository){}
     async create(username: string, email:string, phone: string, password:string, company:string ) :Promise<User>{
         
-        // TODO: Hash the password before creating the user
+        const hashedPassword = await hashPassword(password);
 
         const user = new User(
             new ObjectId().toHexString(),
             username,
             email,
             phone,
-            await hashPassword(password),
+            hashedPassword,
             company,
             false,
             true,
