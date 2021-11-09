@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate {
 
     validateRequest(req:any) : boolean{
     const user = req.user;
-    console.log(user);
 
     if (!user) {
           return false;
