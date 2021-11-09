@@ -17,7 +17,7 @@ export class SendEmailVerficationHandler implements IEventHandler{
         
         const token =  signEmailVerificationJwt(
             { email: userEmail },
-            { expiresIn:"15m" } // 15 minutes
+            { expiresIn:"1d" } // 15 minutes
         );
         
         const [prevToken] = await this.tokenEntityRepository.findOneByEmail(userEmail);

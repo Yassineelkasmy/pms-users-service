@@ -38,7 +38,7 @@ export class ForgotPasswordHandler implements ICommandHandler<ForgotPasswordComm
     await this.tokenFactory.create(email, TokenType.PASSWORD_RESET);
 
 
-    const url = `http://www.localhost:3000/sessions/reset-password?token=${token}`;
+    const url = `http://www.localhost:8081/auth/reset-password/${token}`;
 
     const text = `Reset your password here: ${url}`;
 

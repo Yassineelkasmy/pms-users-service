@@ -65,7 +65,7 @@ export class SessionsController {
         );
     }
 
-    @Post("reset-passwrod")
+    @Post("reset-password")
     async resetPassword(@Body() resetPasswordRequest: ResetPasswordRequest) {
         return await this.commandBus.execute<ResetPasswordCommand>(
             new ResetPasswordCommand(resetPasswordRequest)

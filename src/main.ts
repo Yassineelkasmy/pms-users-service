@@ -8,13 +8,14 @@ const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // var whitelist = ['example.com', 'api.example.com'];
   app.use(cookieSession({
     keys: ['ASDAS']
   }))
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser("secretkey"));
   app.use(authMiddleware);
-  app.enableCors({credentials:true , origin:"http://localhost:8081"});
+  app.enableCors({credentials:true , origin:/https?:\/\/(([^/]+\.)?localhost\:8081)$/i});
   await app.listen(3000);
 }
 bootstrap();
