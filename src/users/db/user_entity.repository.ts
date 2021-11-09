@@ -21,5 +21,9 @@ export class UserEntityRepository extends BaseEntityRepository<UserSchema, User>
     async findOneByEmail(email:string):Promise<User[]> {
         return await this.find({email:email});
     }
+    async findVerifiedByEmail(email:string) {
+        return await this.find({email:email, verified:true});
+
+    }
 
 }

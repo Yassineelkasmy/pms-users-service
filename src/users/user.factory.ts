@@ -23,7 +23,7 @@ export class UserFactory implements EntityFactory<User> {
             false,
             true,
         );
-        if(!(await this.userEntityRepository.findOneByEmail(email)).length){
+        if(!(await this.userEntityRepository.findVerifiedByEmail(email)).length){
             this.userEntityRepository.create(user);
             user.apply(
             new UserCreatedEvent(user.getId(), user.getEmail())
