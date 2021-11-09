@@ -9,7 +9,7 @@ export class RequireUserMiddleWare implements NestMiddleware{
         const user = req.user;
 
         if (!user) {
-          throw new UnauthorizedException("token_expired");
+          throw new UnauthorizedException("access_token_expired");
         }
       
         next();

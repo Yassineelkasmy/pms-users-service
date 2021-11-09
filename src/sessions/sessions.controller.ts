@@ -47,7 +47,7 @@ export class SessionsController {
 
         }
         else {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("refresh_token_expired");
         }
     }
 
