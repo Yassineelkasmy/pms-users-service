@@ -7,12 +7,12 @@ export class UserSchema extends IdentifiableEntitySchema {
   readonly username: string;
 
   @Prop({
-    unique:true,
+    unique: true,
   })
-  readonly email:string;
+  readonly email: string;
 
   @Prop()
-  readonly phone:string;
+  readonly phone: string;
 
   @Prop()
   readonly password: string;
@@ -31,8 +31,5 @@ export class UserSchema extends IdentifiableEntitySchema {
 
   @Prop()
   readonly updatedAt: Date;
-
-  
-
-
 }
+

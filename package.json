@@ -27,6 +27,7 @@
         "@nestjs/cqrs": "^8.0.0",
         "@nestjs/mongoose": "^9.0.0",
         "@nestjs/platform-express": "^8.0.0",
+        "@nestjs/serve-static": "^2.2.2",
         "@types/nodemailer": "^6.4.4",
         "class-transformer": "^0.4.0",
         "class-validator": "^0.13.1",
