@@ -1,8 +1,9 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { get } from 'lodash';
 import { TokenEntityRepository } from 'src/tokens/db/token_entity.repository';
 import { UserEntityRepository } from 'src/users/db/user_entity.repository';
+import { UserVerifiedEvent } from 'src/users/events/user-verified.event';
 import { verifyEmailVerificationJwt } from 'src/utils/jwt.utils';
 import { VerifyUserCommand } from './verify_user.command';
 
@@ -11,6 +12,7 @@ export class VerifyUserHandler implements ICommandHandler<VerifyUserCommand> {
   constructor(
     private readonly userEntityRepository: UserEntityRepository,
     private readonly tokenEntityRepository: TokenEntityRepository,
+    private readonly eventPublisher: EventPublisher,
   ) {}
   async execute({ verifyUserReqeuest }: VerifyUserCommand) {
     const { token } = verifyUserReqeuest;
@@ -40,6 +42,14 @@ export class VerifyUserHandler implements ICommandHandler<VerifyUserCommand> {
       user.verifyUserEmail();
       await this.userEntityRepository.findOneAndReplaceById(user.getId(), user);
     }
+
+    // Apply user verification event to the aggregate
+    // Then we merge the user object context
+    // Publish the verification event
+    user.apply(new UserVerifiedEvent(user.getId()));
+
+    const mergedUser = this.eventPublisher.mergeObjectContext(user);
+
+    mergedUser.commit();
   }
 }
-
