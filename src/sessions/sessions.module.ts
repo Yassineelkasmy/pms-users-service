@@ -10,6 +10,7 @@ import { UserSessionCommandHandlers } from './commands';
 import { UserSessionSchema } from './db/user_session/user_session.schema';
 import { UserSessionEntityRepository } from './db/user_session/user_session_entity.repository';
 import { UserSessionSchemaFactory } from './db/user_session/user_session_schema.factory';
+import { UserSessionEventHandlers } from './events';
 import { SessionsController } from './sessions.controller';
 import { UserSessionFactory } from './UserSession.factory';
 
@@ -17,17 +18,15 @@ import { UserSessionFactory } from './UserSession.factory';
   controllers: [SessionsController],
   imports: [
     CqrsModule,
-    MongooseModule.forFeature(
-      [
-        {
-          name:UserSessionSchema.name,
-          schema: SchemaFactory.createForClass(UserSessionSchema),
-        }
-      ]
-    ),
+    MongooseModule.forFeature([
+      {
+        name: UserSessionSchema.name,
+        schema: SchemaFactory.createForClass(UserSessionSchema),
+      },
+    ]),
     TokensModule,
     UsersModule,
-    EmailModule
+    EmailModule,
   ],
   providers: [
     AuthGuard,
@@ -36,11 +35,7 @@ import { UserSessionFactory } from './UserSession.factory';
     UserSessionEntityRepository,
     UserSessionSchemaFactory,
     ...UserSessionCommandHandlers,
-    
+    ...UserSessionEventHandlers,
   ],
-  
-
-
-
 })
 export class SessionsModule {}

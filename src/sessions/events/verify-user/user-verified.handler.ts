@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { UserVerifiedEvent } from 'src/users/events/user-verified.event';
-import { UserEntityRepository } from '../db/user_entity.repository';
+import { UserVerifiedEvent } from 'src/sessions/events/verify-user/user-verified.event';
+import { UserEntityRepository } from 'src/users/db/user_entity.repository';
 
 @EventsHandler(UserVerifiedEvent)
 export class CreateUserProfileAvatarHandler
