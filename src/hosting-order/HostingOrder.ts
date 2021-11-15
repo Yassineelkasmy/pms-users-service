@@ -4,10 +4,11 @@ export class HostingOrder extends AggregateRoot {
   constructor(
     private readonly _id: string,
     private readonly userId: string,
+    private readonly domain: string,
     private readonly plan: HostingPlan,
     private readonly status: HostingOrderStatus,
-    private readonly createdAt: Date,
-    private readonly updatedAt: Date,
+    private readonly createdAt?: Date,
+    private readonly updatedAt?: Date,
   ) {
     super();
   }
@@ -17,6 +18,10 @@ export class HostingOrder extends AggregateRoot {
   }
   getUserId(): string {
     return this.userId;
+  }
+
+  getDomin(): string {
+    return this.domain;
   }
 
   getHosingPlan(): HostingPlan {

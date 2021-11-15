@@ -6,6 +6,8 @@ export class HostingOrderSchema extends IdentifiableEntitySchema {
   @Prop()
   readonly userId: string;
   @Prop()
+  readonly domain: string;
+  @Prop()
   readonly status: number;
   @Prop()
   readonly plan: number;

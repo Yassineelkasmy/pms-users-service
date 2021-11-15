@@ -10,6 +10,7 @@ export class HostingOrderSchemaFactory
     return {
       _id: new ObjectId(),
       userId: hostingOrder.getUserId(),
+      domain: hostingOrder.getDomin(),
       plan: hostingOrder.getHosingPlan(),
       status: hostingOrder.getOrderStatus(),
       createdAt: hostingOrder.getCreateDate(),
@@ -21,6 +22,7 @@ export class HostingOrderSchemaFactory
     return new HostingOrder(
       hostingOrderSchema._id.toHexString(),
       hostingOrderSchema.userId,
+      hostingOrderSchema.domain,
       hostingOrderSchema.plan,
       hostingOrderSchema.status,
       hostingOrderSchema.createdAt,

@@ -32,4 +32,3 @@ export class UserSchema extends IdentifiableEntitySchema {
   @Prop()
   readonly updatedAt: Date;
 }
-

@@ -16,40 +16,29 @@ import { UserFactory } from './user.factory';
 import { UsersController } from './users.controller';
 
 @Module({
-    imports:[
-        CqrsModule,
-        EmailModule,
-        MongooseModule.forFeature(
-            [
-                {
-                    name: UserSchema.name,
-                    schema:SchemaFactory.createForClass(UserSchema)
-                },
-               
-            ]
-        ),
-        TokensModule,
-
-    ],
-    providers:[
-        UserEntityRepository,
-        UserDtoRepository,
-        UserSchemaFactory,
-        UserFactory,
-        ...UserCommandHandlers,
-        ...UserQueryHandlers,
-        ...UserEventHandlers,
-        EmailService,
-        AuthGuard,
-        
-    ],
-    controllers:[
-        UsersController,
-    ],
-    exports: [
-        UserEntityRepository,
-        UserSchemaFactory,
-        UserFactory,
-    ]
+  imports: [
+    CqrsModule,
+    EmailModule,
+    MongooseModule.forFeature([
+      {
+        name: UserSchema.name,
+        schema: SchemaFactory.createForClass(UserSchema),
+      },
+    ]),
+    TokensModule,
+  ],
+  providers: [
+    UserEntityRepository,
+    UserDtoRepository,
+    UserSchemaFactory,
+    UserFactory,
+    ...UserCommandHandlers,
+    ...UserQueryHandlers,
+    ...UserEventHandlers,
+    EmailService,
+    AuthGuard,
+  ],
+  controllers: [UsersController],
+  exports: [UserEntityRepository, UserSchemaFactory, UserFactory],
 })
 export class UsersModule {}
