@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-
+import { HostingPlan, HostingOrderStatus } from './hosting-plan.enum';
 export class HostingOrder extends AggregateRoot {
   constructor(
     private readonly _id: string,
@@ -34,16 +34,4 @@ export class HostingOrder extends AggregateRoot {
   getCreateDate(): Date {
     return this.createdAt;
   }
-}
-
-export enum HostingPlan {
-  REGULAR = 8,
-  BUSINESS = 16,
-  CORPORATE = 35,
-  PROFESSIONAL = 49,
-}
-
-export enum HostingOrderStatus {
-  PENDING,
-  VALIDATED,
 }
