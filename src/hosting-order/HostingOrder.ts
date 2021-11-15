@@ -3,8 +3,8 @@ import { HostingPlan, HostingOrderStatus } from './hosting-plan.enum';
 export class HostingOrder extends AggregateRoot {
   constructor(
     private readonly _id: string,
-    private readonly plan: HostingPlan,
     private readonly userId: string,
+    private readonly plan: HostingPlan,
     private readonly status: HostingOrderStatus,
     private readonly createdAt: Date,
     private readonly updatedAt: Date,

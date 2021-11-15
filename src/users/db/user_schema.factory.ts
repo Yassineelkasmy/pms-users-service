@@ -7,7 +7,8 @@ import { UserSchema } from './user.schema';
 
 @Injectable()
 export class UserSchemaFactory
-  implements EntitySchemaFactory<UserSchema, User> {
+  implements EntitySchemaFactory<UserSchema, User>
+{
   create(user: User): UserSchema {
     return {
       _id: new ObjectId(user.getId()),
@@ -15,12 +16,13 @@ export class UserSchemaFactory
       email: user.getEmail(),
       phone: user.getPhone(),
       company: user.getCompany(),
-      password : user.getPassword(),
+      password: user.getPassword(),
       verified: user.isVerified(),
       active: user.isActive(),
       createdAt: user.getCreateDate(),
       updatedAt: user.getUpdateDate(),
-  }}
+    };
+  }
 
   createFromSchema(userSchema: UserSchema): User {
     return new User(
@@ -34,7 +36,6 @@ export class UserSchemaFactory
       userSchema.active,
       userSchema.createdAt,
       userSchema.updatedAt,
-
     );
   }
 }

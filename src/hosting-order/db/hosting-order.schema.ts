@@ -2,7 +2,7 @@ import { Prop, Schema } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from 'src/database/identifiable-entity.schema';
 
 @Schema({ versionKey: false, collection: 'hosting-orders', timestamps: true })
-export class HosingOrderSchema extends IdentifiableEntitySchema {
+export class HostingOrderSchema extends IdentifiableEntitySchema {
   @Prop()
   readonly userId: string;
   @Prop()
