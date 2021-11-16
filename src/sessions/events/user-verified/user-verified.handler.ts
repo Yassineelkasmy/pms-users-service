@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { UserVerifiedEvent } from 'src/sessions/events/verify-user/user-verified.event';
+import { UserVerifiedEvent } from 'src/sessions/events/user-verified/user-verified.event';
 import { UserEntityRepository } from 'src/users/db/user_entity.repository';
 
 @EventsHandler(UserVerifiedEvent)

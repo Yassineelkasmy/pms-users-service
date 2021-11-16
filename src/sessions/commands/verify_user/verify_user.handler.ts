@@ -3,7 +3,7 @@ import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { get } from 'lodash';
 import { TokenEntityRepository } from 'src/tokens/db/token_entity.repository';
 import { UserEntityRepository } from 'src/users/db/user_entity.repository';
-import { UserVerifiedEvent } from 'src/sessions/events/verify-user/user-verified.event';
+import { UserVerifiedEvent } from 'src/sessions/events/user-verified/user-verified.event';
 import { verifyEmailVerificationJwt } from 'src/utils/jwt.utils';
 import { VerifyUserCommand } from './verify_user.command';
 
