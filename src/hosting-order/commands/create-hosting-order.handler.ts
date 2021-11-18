@@ -37,3 +37,4 @@ export class CreateHostingOrderHandler
     await this.hostingOrderEntityRepo.create(hostingOrder);
   }
 }
+

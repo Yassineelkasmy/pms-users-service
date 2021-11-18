@@ -13,7 +13,9 @@ export abstract class BaseEntityRepository<
     return this.findOne({ _id: new ObjectId(id) } as FilterQuery<TSchema>);
   }
 
-  
+  async deleteOneById(id: string): Promise<boolean> {
+    return this.deleteOne({ _id: new ObjectId(id) } as FilterQuery<TSchema>);
+  }
 
   async findOneAndReplaceById(id: string, entity: TEntity): Promise<void> {
     await this.findOneAndReplace(
@@ -25,4 +27,5 @@ export abstract class BaseEntityRepository<
   async findAll(): Promise<TEntity[]> {
     return this.find({});
   }
+  
 }

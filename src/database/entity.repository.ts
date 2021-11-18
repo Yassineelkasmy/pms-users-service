@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import {
   FilterQuery,
@@ -77,4 +77,13 @@ export abstract class EntityRepository<
       throw new NotFoundException('Unable to find the entity to replace.');
     }
   }
+
+  protected async deleteOne(	
+    entityFilterQuery: FilterQuery<TSchema>,
+  ) : Promise<boolean> {
+	const deleteResult = await this.entityModel.deleteOne(entityFilterQuery);
+	return deleteResult.deletedCount == 1;
+
+  }
+  
 }

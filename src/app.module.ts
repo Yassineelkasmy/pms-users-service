@@ -16,7 +16,7 @@ import { join } from 'path';
     EmailModule,
     HostingOrderModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'users'),
+      rootPath: join(__dirname, '..', 'profiles'),
     }),
   ],
   controllers: [],

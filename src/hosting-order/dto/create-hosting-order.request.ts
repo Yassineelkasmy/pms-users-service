@@ -1,8 +1,8 @@
-import { IsNumber, IsUrl } from 'class-validator';
+import { IsEnum, IsUrl } from 'class-validator';
 import { HostingPlan } from '../hosting-plan.enum';
 
 export class CreateHostingOrderRequest {
-  @IsNumber()
+  @IsEnum(HostingPlan)
   plan: HostingPlan;
 
   @IsUrl()

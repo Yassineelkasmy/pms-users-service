@@ -1,3 +1,3 @@
 import { CreateHostingOrderHandler } from './create-hosting-order.handler';
-
-export const HostingOrderCommandHandlers = [CreateHostingOrderHandler];
+import { CancelHostingOrderHandler } from './cancel-hosting-order.handler';
+export const HostingOrderCommandHandlers = [CreateHostingOrderHandler , CancelHostingOrderHandler];
