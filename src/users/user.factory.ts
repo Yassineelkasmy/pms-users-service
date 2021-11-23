@@ -31,10 +31,8 @@ export class UserFactory implements EntityFactory<User> {
     const [checkUser] = await this.userEntityRepository.findOneByEmail(email);
     if (checkUser) {
       if (!checkUser.isVerified()) {
-        await this.userEntityRepository.findOneAndReplaceById(
-          checkUser.getId(),
-          user,
-        );
+        await this.userEntityRepository.deleteOneById(checkUser.getId());
+        await this.userEntityRepository.create(user);
         user.apply(new UserCreatedEvent(user.getId(), user.getEmail()));
         return user;
       } else {
