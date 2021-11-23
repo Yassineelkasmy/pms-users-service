@@ -27,7 +27,7 @@ export class SendEmailVerficationHandler implements IEventHandler{
         }
         await this.tokenFactory.create(userEmail,TokenType.EMAIL_VERIFICATION);
         
-        const url = `http://www.localhost:8081/auth/verify/${token}`;
+        const url = `http://www.localhost:8080/auth/verify/${token}`;
 
         const text = `Welcome to the application. To confirm the email address, click here: ${url}`;
  

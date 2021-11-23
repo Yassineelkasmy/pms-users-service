@@ -12,6 +12,7 @@ import { ForgotPasswordCommand } from './commands/forgot_password/forgot_passwor
 import { ResetPasswordRequest } from './dto/reset_password_reqeuest.dto';
 import { ResetPasswordCommand } from './commands/reset_password/reset_password.command';
 import { VerifyUserRequest } from './dto/verify_user.request';
+import {RemoveSessionCommand} from './commands/remove_session/remove-session.command';
 @Controller('sessions')
 export class SessionsController {
     constructor(private readonly commandBus: CommandBus) {}
@@ -71,8 +72,16 @@ export class SessionsController {
             new ResetPasswordCommand(resetPasswordRequest)
         );
     }
-
     
+    @UseGuards(AuthGuard)
+    @Post("remove-session")
+    async removeSession(@Req() req:any) {
+        const sessionId = req.user.session as string;
+
+        return await this.commandBus.execute<RemoveSessionCommand>(
+            new RemoveSessionCommand(sessionId)
+        );
+    } 
 
 
 
