@@ -19,6 +19,7 @@ export class UserSchemaFactory
       password: user.getPassword(),
       verified: user.isVerified(),
       active: user.isActive(),
+      image: user.getProfileImage(),
       createdAt: user.getCreateDate(),
       updatedAt: user.getUpdateDate(),
     };
@@ -34,6 +35,7 @@ export class UserSchemaFactory
       userSchema.company,
       userSchema.verified,
       userSchema.active,
+      userSchema.image,
       userSchema.createdAt,
       userSchema.updatedAt,
     );

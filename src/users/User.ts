@@ -10,6 +10,7 @@ export class User extends AggregateRoot {
     private readonly company: string,
     private verified: boolean,
     private readonly active: boolean,
+    private profileImage?: string,
     private readonly createdAt?: Date,
     private readonly updatedAt?: Date,
   ) {
@@ -20,13 +21,14 @@ export class User extends AggregateRoot {
     return this._id;
   }
 
-  getProfile(): Object {
+  getProfile() {
     return {
       id: this._id,
       username: this.username,
       email: this.email,
       phone: this.phone,
       company: this.company,
+      profileImage: this.profileImage,
     };
   }
   getUsername(): string {
@@ -65,6 +67,10 @@ export class User extends AggregateRoot {
     this.password = password;
   }
 
+  getProfileImage(): string {
+    return this.profileImage;
+  }
+
   getCreateDate(): Date {
     return this.createdAt;
   }
@@ -72,5 +78,8 @@ export class User extends AggregateRoot {
   getUpdateDate(): Date {
     return this.updatedAt;
   }
-}
 
+  setProfileImage(image: string) {
+    this.profileImage = image;
+  }
+}

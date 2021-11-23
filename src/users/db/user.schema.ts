@@ -27,6 +27,9 @@ export class UserSchema extends IdentifiableEntitySchema {
   readonly active: boolean;
 
   @Prop()
+  readonly image: string;
+
+  @Prop()
   readonly createdAt: Date;
 
   @Prop()
